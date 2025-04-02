@@ -1,0 +1,456 @@
+<?php
+/* @var $block \Vapeuk\PageBuilderRewardsContent\Block\Widget\RewardsContent */
+?>
+<?php if ($block->getRecaptcha()): ?>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+<?php endif;?>
+<div class="loyalty-rewards__page-row loyalty-rewards__banner loyalty-rewards__banner--header">
+    <div class="loyalty-rewards__page-row-container">
+        <div class="loyalty-rewards__content loyalty-rewards__content--header">
+            <div class="loyalty-rewards__header-content">
+                <img class="loyalty-rewards__logo" width="429" height="329" src="<?= $block->escapeUrl($block->getViewFileUrl('Vapeuk_PageBuilderRewardsContent::images/vip-rewards-logo.webp')) ?>" alt="VIP Rewards"/>
+                <?= /* @noEscape */ $block->getContent($block->isLoggedIn() ? 'the_club_content' : 'join_the_club_content') ?>
+                <?php if (!$block->isLoggedIn()): ?>
+                <div class="loyalty-rewards__not-logged-in-actions">
+                    <a href="<?= $block->escapeUrl($block->getRegisterUrl()) ?>" class="loyalty-rewards__not-logged-in-action loyalty-rewards__not-logged-in-action--create-account"><span><?= $block->escapeHtml(__('Create account')) ?></span></a>
+                    <a href="<?= $block->escapeUrl($block->getLoginUrl()) ?>" class="loyalty-rewards__not-logged-in-action loyalty-rewards__not-logged-in-action--log-in"><span><?= $block->escapeHtml(__('Log in')) ?></span></a>
+                </div>
+            <?php endif; ?>
+            </div>
+            <div class="loyalty-rewards__header-image-mobile">
+                <img src="<?= $block->escapeUrl($block->getViewFileUrl('Vapeuk_PageBuilderRewardsContent::images/vip-bronze-woman.png')) ?>" alt="" width="1481" height="1205"/>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="loyalty-rewards__page-row loyalty-rewards__page-row--bg">
+    <div class="loyalty-rewards__page-row-container">
+        <?php if ($block->isLoggedIn()): ?>
+            <div class="loyalty-rewards__content vip-rewards-status">
+                <div class="rewards-status-widget">
+                    <div class="yotpo-widget-instance" data-yotpo-instance-id="<?= $block->escapeHtml($block->getYotpoWidgetInstanceId()) ?>"></div>
+                </div>
+                <?php if ($block->hasCustomerMadeAPurchase()): ?>
+                    <h2 class="loyalty-rewards__heading-2"><?= $block->escapeHtml(__('Your current VIP status is')) ?> <span class="js-vip-rewards-status-header-tier"></span></h2>
+                    <div class="vip-rewards__card vip-rewards__card--responsive vip-rewards__card--no-headers">
+                        <?= $block->getLayout()
+                            ->createBlock(\Magento\Framework\View\Element\Template::class)
+                            ->setTemplate('Vapeuk_Customer::graphics/bronze-individual.svg')
+                            ->toHtml();
+                        ?>
+                        <?= $block->getLayout()
+                            ->createBlock(\Magento\Framework\View\Element\Template::class)
+                            ->setTemplate('Vapeuk_Customer::graphics/silver-individual.svg')
+                            ->toHtml();
+                        ?>
+                        <?= $block->getLayout()
+                            ->createBlock(\Magento\Framework\View\Element\Template::class)
+                            ->setTemplate('Vapeuk_Customer::graphics/gold-individual.svg')
+                            ->toHtml();
+                        ?>
+                        <?= $block->getLayout()
+                            ->createBlock(\Magento\Framework\View\Element\Template::class)
+                            ->setTemplate('Vapeuk_Customer::graphics/platinum.svg')
+                            ->toHtml();
+                        ?>
+                    </div>
+                    <?php else: ?>
+                        <h3><?= $block->escapeHtml(__('You\'re so close to reaching the first VIP tier...')) ?></h3>
+                        <p class="loyalty-rewards__no-tier">
+                            <?= $block->escapeHtml(__(
+                                'Spend just %1 to start your %2, and unlock new benefits.',
+                                '<span>' . __('£1') . '</span>',
+                                '<span>' . __('Vape UK VIP Club journey') . '</span>',
+                            ), ['span']) ?>
+                            <a href="#member-benefits"><?= $block->escapeHtml(__('See the benefits')) ?></a>
+                        </p>
+                    <?php endif; ?>
+            </div>
+        <?php endif; ?>
+
+        <div class="loyalty-rewards__content">
+            <?= /* @noEscape */ $block->getContent('points_mean_discounts_content') ?>
+            <div class="loyalty-rewards-redemption-grid">
+                <?php foreach ($block->getRedemptionRewards() as $reward): ?>
+                    <div class="loyalty-rewards-redemption-grid__reward">
+                        <div class="loyalty-rewards-redemption-grid__points">
+                            <?= $block->escapeHtml($reward['points'] . ' pts') ?>
+                        </div>
+                        <div class="loyalty-rewards-redemption-grid__value">
+                            <?= '&pound;' . $block->escapeHtml($reward['value']) ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+        <div id="member-benefits" class="anchor-target"></div>
+        <div class="loyalty-rewards__content">
+            <h3 style="text-align: center;"><?= $block->escapeHtml(__('Vape UK VIP Club Member Benefits')) ?></h3>
+        </div>
+
+        <!-- Desktop table -->
+        <div class="loyalty-rewards-grid loyalty-rewards-grid--desktop">
+            <div></div>
+            <?php foreach ($block->getRewardTiers(true) as $tier => $label): ?>
+                <div class="loyalty-rewards-grid__tier-badge-container">
+                    <div class="loyalty-rewards-grid__tier-badge">
+                        <p class="loyalty-rewards-grid__tier-badge-label loyalty-rewards-grid__tier-badge-label--<?= $block->escapeHtml($tier) ?>"><?= $block->escapeHtml($label) ?></p>
+                        <p class="loyalty-rewards-grid__tier-badge-member loyalty-rewards-grid__tier-badge-member--<?= $block->escapeHtml($tier) ?>"><span><?= $block->escapeHtml(__('VIP')) ?></span> <?= $block->escapeHtml(__('Member')) ?></p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+            <div class="loyalty-rewards-grid__feature loyalty-rewards-grid__feature--annual-spend">
+                <?= $block->escapeHtml(__('Annual Spend')) ?>
+            </div>
+            <?php foreach ($block->getRewardTiers() as $tier => $label): ?>
+                <div class="loyalty-rewards-grid__data loyalty-rewards-grid__data--annual-spend">
+                    <?php $annualSpend = $block->getAnnualSpendForTier($tier); ?>
+                    &pound;<?= $block->escapeHtml($annualSpend['max'] === null
+                        ? number_format($annualSpend['min']) . ' +'
+                        : number_format($annualSpend['min']) . ' - &pound;' . number_format($annualSpend['max'])) ?>
+                </div>
+            <?php endforeach; ?>
+
+            <?php foreach ($block->getWaysToEarnTypes(true) as $wayToEarnKey => $wayToEarnRewardsType): ?>
+                <?php $rewards = $block->getRewardsForWayToEarn($wayToEarnKey, $wayToEarnRewardsType); ?>
+                <div class="loyalty-rewards-grid__feature">
+                    <?= $block->escapeHtml($rewards['label']) ?>
+                </div>
+
+                <?php if ($wayToEarnRewardsType === 'fixed'): ?>
+                    <?php foreach ($block->getRewardTiers() as $tier => $label): ?>
+                        <div class="loyalty-rewards-grid__data">
+                            <?php if (!in_array($tier, $rewards['tiers'])): ?>
+                                -
+                            <?php elseif ($rewards['rewards'][0] === '2x' || in_array($wayToEarnKey, ['ways_to_earn_bfcm_offers', 'ways_to_earn_loyalty_punch_card'])): ?>
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                                    <path d="M27 4l-15 15-7-7-5 5 12 12 20-20z"></path>
+                                </svg>
+                                <?php else: ?>
+                                    <?= $block->escapeHtml($rewards['rewards'][0] . ' ' . $block->getRewardLabelByQtyAndType($rewards['rewards'][0], $rewards['reward_label'])) ?>
+                                <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+
+                <?php if ($wayToEarnRewardsType === 'tiered'): ?>
+                    <?php foreach ($block->getRewardTiers() as $tier => $label): ?>
+                        <div class="loyalty-rewards-grid__data">
+                            <?php if (in_array($tier, $rewards['tiers'])): ?>
+                                <?php
+                                    $i = array_search($tier, $rewards['tiers']);
+                                    echo $block->escapeHtml($rewards['rewards'][$i]
+                                        . ' '
+                                        . $block->getRewardLabelByQtyAndType($rewards['rewards'][$i], $rewards['reward_label']));
+                                ?>
+                                <?php else: ?>
+                                    -
+                                <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+        <!-- End Desktop table -->
+
+        <!-- Mobile table -->
+        <div class="splide rewards-grid-mobile-container">
+            <div class="splide__track">
+                <div class="splide__list">
+                <?php foreach ($block->getRewardTiers() as $tier => $label): ?>
+                        <div class="splide__slide">
+                            <div class="loyalty-rewards-grid loyalty-rewards-grid--mobile loyalty-rewards-grid--<?= $block->escapeHtml($tier) ?>">
+                                <div class="loyalty-rewards-grid__tier-badge-container">
+                                    <div class="loyalty-rewards-grid__tier-badge">
+                                        <p class="loyalty-rewards-grid__tier-badge-label loyalty-rewards-grid__tier-badge-label--<?= $block->escapeHtml($tier) ?>"><?= $block->escapeHtml($label) ?></p>
+                                        <p class="loyalty-rewards-grid__tier-badge-member loyalty-rewards-grid__tier-badge-member--<?= $block->escapeHtml($tier) ?>"><span><?= $block->escapeHtml(__('VIP')) ?></span> <?= $block->escapeHtml(__('Member')) ?></p>
+                                    </div>
+                                </div>
+                                <div class="loyalty-rewards-grid__span-2">
+                                    <div class="loyalty-rewards-grid__feature loyalty-rewards-grid__feature--annual-spend">
+                                        <?= $block->escapeHtml(__('Annual Spend')) ?>
+                                    </div>
+                                    <div class="loyalty-rewards-grid__data loyalty-rewards-grid__data--annual-spend">
+                                        <?php $annualSpend = $block->getAnnualSpendForTier($tier); ?>
+                                        &pound;<?= $block->escapeUrl($annualSpend['max'] === null
+                                            ? number_format($annualSpend['min']) . ' +'
+                                            : number_format($annualSpend['min']) . ' - &pound;' . number_format($annualSpend['max'])) ?>
+                                    </div>
+                                </div>
+
+                                <?php foreach ($block->getWaysToEarnTypes(true) as $wayToEarnKey => $wayToEarnRewardsType): ?>
+                                    <?php $rewards = $block->getRewardsForWayToEarn($wayToEarnKey, $wayToEarnRewardsType); ?>
+                                    <div class="loyalty-rewards-grid__feature">
+                                        <?= $block->escapeHtml($rewards['label']) ?>
+                                    </div>
+
+                                    <?php if ($wayToEarnRewardsType === 'fixed'): ?>
+                                        <div class="loyalty-rewards-grid__data">
+                                            <?php if (!in_array($tier, $rewards['tiers'])): ?>
+                                                -
+                                            <?php elseif ($rewards['rewards'][0] === '2x' || in_array($wayToEarnKey, ['ways_to_earn_bfcm_offers', 'ways_to_earn_loyalty_punch_card'])): ?>
+                                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                                                    <path d="M27 4l-15 15-7-7-5 5 12 12 20-20z"></path>
+                                                </svg>
+                                                <?php else: ?>
+                                                    <?= $block->escapeHtml($rewards['rewards'][0] . ' ' . $block->getRewardLabelByQtyAndType($rewards['rewards'][0], $rewards['reward_label'])) ?>
+                                                <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <?php if ($wayToEarnRewardsType === 'tiered'): ?>
+                                        <div class="loyalty-rewards-grid__data">
+                                            <?php if (in_array($tier, $rewards['tiers'])):
+                                                    $i = array_search($tier, $rewards['tiers']);
+                                                    echo $block->escapeHtml($rewards['rewards'][$i]
+                                                        . ' '
+                                                        . $block->getRewardLabelByQtyAndType($rewards['rewards'][$i], $rewards['reward_label']));
+                                                ?>
+                                                <?php else: ?>
+                                                    -
+                                                <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+        <!-- End Mobile table -->
+    </div>
+</div>
+<!-- Middle banner -->
+<div class="loyalty-rewards__page-row loyalty-rewards__banner loyalty-rewards__banner--middle">
+    <div class="loyalty-rewards__page-row-container">
+        <div class="loyalty-rewards__content loyalty-rewards__content--header">
+            <div class="loyalty-rewards__header-content">
+                <?= /* @noEscape */ $block->getContent('middle_banner_content') ?>
+            </div>
+            <div class="loyalty-rewards__header-image-mobile">
+                <img src="<?= $block->escapeUrl($block->getViewFileUrl('Vapeuk_PageBuilderRewardsContent::images/vip-silver-man.png')) ?>" alt="" width="1693" height="998"/>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End middle banner -->
+
+<!-- Ways to earn rows -->
+<div class="loyalty-rewards__page-row loyalty-rewards__page-row--bg">
+    <div class="loyalty-rewards__page-row-container">
+        <?php $waysToEarnLocked = ($block->isLoggedIn() && !$block->hasCustomerMadeAPurchase()); ?>
+        <?php if (!$block->isLoggedIn()): ?>
+            <div class="loyalty-ways__row loyalty-ways__account-panel loyalty-ways__account-panel--signup">
+                <div class="loyalty-ways__row-inner">
+                    <div class="loyalty-ways__icon">
+                        <div class="loyalty-ways__icon-img">
+                            <img src="<?= $block->escapeUrl($block->getViewFileUrl('Vapeuk_PageBuilderRewardsContent::images/create-account.svg')) ?>" alt="" width="200" height="191"/>
+                        </div>
+                    </div>
+                    <div class="loyalty-ways__description">
+                        <?= /* @noEscape */ $block->getContent('not_logged_in_content') ?>
+                        <div class="loyalty-ways__description-links">
+                            <a href="<?= $block->escapeUrl($block->getRegisterUrl()) ?>" class="button secondary"><span><?= $block->escapeHtml(__('Create account')) ?></span></a>
+                            <a href="<?= $block->escapeUrl($block->getLoginUrl()) ?>" class="button primary"><span><?= $block->escapeHtml(__('Login')) ?></span></a>
+                        </div>
+                    </div>
+                    <div class="loyalty-ways__points loyalty-ways__account-panel-points">
+                        <div class="loyalty-ways__value">
+                            <div class="loyalty-ways__value-intro">
+                                <?= $block->escapeHtml(__('Earn')) . '<span>50</span>' . $block->escapeHtml(__(' points')) ?>
+                            </div>
+                            <div><?= $block->escapeHtml(__('and start your reward journey')) ?></div>
+                            <div class="loyalty-ways__value-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.4 17.1">
+                                    <path fill="#fff" d="M0 0h10.5L5.2 17.1 0 0z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if ($block->isLoggedIn() && !$block->hasCustomerMadeAPurchase()): ?>
+            <div class="loyalty-ways__row loyalty-ways__account-panel loyalty-ways__account-panel--welcome">
+                <div class="loyalty-ways__row-inner">
+                    <div class="loyalty-ways__icon">
+                        <img src="<?= $block->escapeUrl($block->getViewFileUrl('Vapeuk_PageBuilderRewardsContent::images/account-hello.svg')) ?>" alt="" width="200" height="191" />
+                    </div>
+                    <div class="loyalty-ways__description">
+                        <?= /* @noEscape */ $block->getContent('logged_in_content_no_tier_status') ?>
+                    </div>
+                    <div class="loyalty-ways__points loyalty-ways__account-panel-points">
+                        <div class="loyalty-ways__value">
+                            <div class="loyalty-ways__value-points">
+                                <span class="loyalty-value-active">50</span>
+                            </div>
+                            <div class="loyalty-ways__value-label">
+                                <?= $block->escapeHtml(__('points awarded!')) ?>
+                            </div>
+                            <div><?= $block->escapeHtml(__('Place your first order to unlock more benefits')) ?></div>
+                            <div class="loyalty-ways__value-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.4 17.1">
+                                    <path fill="#fff" d="M0 0h10.5L5.2 17.1 0 0z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php foreach ($block->getWaysToEarnTypes() as $wayToEarnKey => $wayToEarnRewardsType): ?>
+            <?php $rewards = $block->getRewardsForWayToEarn($wayToEarnKey, $wayToEarnRewardsType); ?>
+            <div class="loyalty-ways__row <?= $waysToEarnLocked ? ' loyalty-ways__row--locked' : '' ?>">
+                <div class="loyalty-ways__row-inner">
+
+                    <div class="loyalty-ways__icon">
+                        <?php if (!empty($rewards['icon'])): ?>
+                            <img
+                                src="<?= $block->escapeUrl($block->getViewFileUrl('Vapeuk_PageBuilderRewardsContent::images/' . $rewards['icon'])) . '.svg' ?>"
+                                alt=""
+                                width="<?= $block->escapeHtml($rewards['icon_width'] ?? '') ?>"
+                                height="<?= $block->escapeHtml($rewards['icon_height'] ?? '') ?>"
+                            />
+                        <?php endif; ?>
+                    </div>
+                    <div class="loyalty-ways__description">
+                        <?= /* @noEscape */ $block->getContent($wayToEarnKey) ?>
+                    </div>
+                    <div class="loyalty-ways__reward">
+                        <div class="loyalty-ways__value">
+                            <div class="loyalty-ways__value-points
+                                <?php
+                                if (isset($rewards['modifier_classes']['value_points'])) {
+                                    echo $block->escapeHtml(' loyalty-ways__value-points--' . $rewards['modifier_classes']['value_points']);
+                                }
+                                ?>">
+                                <?php foreach ($rewards['rewards'] as $i => $reward) {
+                                    if (count($rewards['rewards']) === 1) {
+                                        if ($reward === '2x') { ?>
+                                            <div class="loyalty-ways__double-points-badge">
+                                                <div class="loyalty-ways__double-points-badge-bg"></div>
+                                                <p><?= $block->escapeHtml(__('Double reward points!')) ?></p>
+                                            </div>
+                                        <?php } else { ?>
+                                            <span class="js-loyalty-value-tier <?php foreach ($rewards['tiers'] as $tier) { echo $block->escapeHtml(' js-loyalty-value-tier--all-' . $tier); } ?>"><?= $block->escapeHtml($reward) ?></span>
+                                        <?php } ?>
+                                    <?php } else { ?>
+                                        <span class="js-loyalty-value-tier js-loyalty-value-tier--<?= $block->escapeHtml($rewards['tiers'][$i]) ?>"><?= $block->escapeHtml($reward) ?></span>
+                                    <?php } ?>
+                                <?php } ?>
+                            </div>
+                            <div class="loyalty-ways__value-label">
+                                <?= $block->escapeHtml($rewards['reward_label']) ?>
+                            </div>
+                        </div>
+                        <div class="loyalty-ways__reward-tiers">
+                            <?php foreach ($rewards['tiers'] as $tier): ?>
+                                <div class="loyalty-ways__reward-tier loyalty-ways__reward-tier--<?= $block->escapeHtml($tier) ?>"><?= $block->escapeHtml($tier) ?></div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+
+                    <?php if (isset($rewards['optin']) && $block->isLoggedIn()): ?>
+                        <?php if ($rewards['optin'] === 'newsletter'): ?>
+                            <div class="loyalty-ways__form-optin loyalty-ways__form-optin--newsletter <?=  $block->isCustomerOnMailingList() ? 'loyalty-ways__form-optin--complete' : '' ?>">
+                                <p>
+                                    <span><?= $block->escapeHtml(__('Subscribe here.')) ?></span> <?= $block->escapeHtml(__('We value your privacy and promise to keep your details safe.')) ?>
+                                </p>
+                                <form>
+                                    <div>
+                                        <label for="subscribe-email"><?= $block->escapeHtml(__('Email')) ?></label>
+                                        <input type="email" name="subscribe-email" id="subscribe-email" value="<?= $block->escapeHtmlAttr($block->getCustomerEmail()) ?>">
+                                    </div>
+                                    <button type="submit">
+                                        <span><?= $block->escapeHtml(__('Subscribe')) ?></span>
+                                    </button>
+                                    <?php if ($block->getRecaptcha()):?>
+                                        <div hidden>
+                                            <div
+                                                class="g-recaptcha"
+                                                data-sitekey="<?= $block->escapeHtml($block->getRecaptchaKey()) ?>"
+                                                data-callback='emailSignupRecaptchaCallback'
+                                                data-size="invisible">
+                                            </div>
+                                        </div>
+                                    <?php endif;?>
+                                </form>
+                                <p class="loyalty-ways__success">
+                                    <span><?= $block->escapeHtml(__('Thank you for subscribing.')) ?></span> <?= $block->escapeHtml(__('We value your privacy and promise to keep your details safe.')) ?>
+                                </p>
+                                <p class="loyalty-ways__is-opted-in">
+                                    <span><?= $block->escapeHtml(__('You\'re already subscribed.')) ?></span> <?= $block->escapeHtml(__('We value your privacy and promise to keep your details safe.')) ?>
+                                </p>
+
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($rewards['optin'] === 'birthday'): ?>
+                            <div class="loyalty-ways__form-optin loyalty-ways__form-optin--birthday <?=  $block->hasCustomerProvidedBirthday() ? 'loyalty-ways__form-optin--complete' : '' ?>">
+                                <p><?= $block->escapeHtml(__('Enter your')) ?> <span><?= $block->escapeHtml(__('date of birth')) ?></span></p>
+                                <form>
+                                    <div>
+                                        <label for="dob-day"><?= $block->escapeHtml(__('Day')) ?></label>
+                                        <input type="number" name="dob-day" id="dob-day">
+                                    </div>
+                                    <div>
+                                        <label for="dob-month"><?= $block->escapeHtml(__('Month')) ?></label>
+                                        <select name="dob-month" id="dob-month">
+                                            <option name="1"><?= $block->escapeHtml(__('January')) ?></option>
+                                            <option name="2"><?= $block->escapeHtml(__('February')) ?></option>
+                                            <option name="3"><?= $block->escapeHtml(__('March')) ?></option>
+                                            <option name="4"><?= $block->escapeHtml(__('April')) ?></option>
+                                            <option name="5"><?= $block->escapeHtml(__('May')) ?></option>
+                                            <option name="6"><?= $block->escapeHtml(__('June')) ?></option>
+                                            <option name="7"><?= $block->escapeHtml(__('July')) ?></option>
+                                            <option name="8"><?= $block->escapeHtml(__('August')) ?></option>
+                                            <option name="9"><?= $block->escapeHtml(__('September')) ?></option>
+                                            <option name="10"><?= $block->escapeHtml(__('October')) ?></option>
+                                            <option name="11"><?= $block->escapeHtml(__('November')) ?></option>
+                                            <option name="12"><?= $block->escapeHtml(__('December')) ?></option>
+                                        </select>
+                                    </div>
+                                    <button type="submit">
+                                        <span><?= $block->escapeHtml(__('Add birthday')) ?></span>
+                                    </button>
+                                </form>
+                                <p>
+                                    <span><?= $block->escapeHtml(__('You\'ve told us your date of birth.')) ?></span> <?= $block->escapeHtml(__('We value your privacy, so we\'ll keep your details safe.')) ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </div>
+                <div class="loyalty-ways__row-lock-badge"><?= $block->escapeHtml(__('Reach')) ?> <span class="loyalty-ways__reward-tier loyalty-ways__reward-tier--<?= $block->escapeHtml($rewards['tiers'][0]) ?>"><?= $block->escapeHtml($rewards['tiers'][0]) ?></span> <?= $block->escapeHtml(__('to unlock')) ?></div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+<!-- End ways to earn rows -->
+
+<!-- Footer banner -->
+<div class="loyalty-rewards__page-row loyalty-rewards__banner loyalty-rewards__banner--footer">
+    <div class="loyalty-rewards__page-row-container">
+        <div class="loyalty-rewards__content loyalty-rewards__content--header">
+            <div class="loyalty-rewards__header-content">
+                <?= /* @noEscape */ $block->getContent('footer_banner_content') ?>
+            </div>
+            <div class="loyalty-rewards__header-image-mobile">
+                <img src="<?= $block->escapeUrl($block->getViewFileUrl('Vapeuk_PageBuilderRewardsContent::images/vip-platinum-girl.png')) ?>" alt="" width="1724" height="1094"/>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End footer banner -->
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Vapeuk_PageBuilderRewardsContent/js/rewards-content":  {
+                "recaptcha": <?= $block->getRecaptcha() ? 'true' : 'false' ?>
+            }
+        }
+    }
+</script>

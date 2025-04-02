@@ -1,0 +1,1654 @@
+.loyalty-rewards__page-row {
+    padding: 60px 0;
+    &--bg {
+        background-color: #f6f7f8;
+    }
+    &.loyalty-rewards__banner {
+        background: rgb(225, 228, 245);
+        background: radial-gradient(circle, rgba(225, 228, 245, .75) 0%, rgba(246, 234, 240, 1) 100%);
+        position: relative;
+        overflow: hidden;
+        &::after {
+            content: '';
+            position: absolute;
+            width: 95%;
+            max-width: 1500px;
+            height: 108%;
+            max-height: 660px;
+            bottom: 0;
+            right: 45%;
+            transform: translateX(60%);
+            background-image: url('../Vapeuk_PageBuilderRewardsContent/images/vip-bronze-woman.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: right bottom;
+        }
+        .loyalty-rewards__header-content {
+            margin-left: 30px;
+        }
+        @media screen and (max-width: 1023px) {
+            padding-bottom: 0;
+            .loyalty-rewards__page-row-container {
+                padding-bottom: 0;
+            }
+            &::after {
+                display: none;
+            }
+            .loyalty-rewards__header-content {
+                margin-left: 0;
+            }
+        }
+        &--header {
+            &::after {
+                width: 75%;
+                right: 40%;
+                @media screen and (max-width: 1350px) {
+                    & {
+                        right: 40%;
+                        height: 45vw;
+                    }
+                }
+                @media screen and (max-width: 1150px) {
+                    & {
+                        right: 38%;
+                    }
+
+                }
+                @media screen and (max-width: 1023px) {
+                    & {
+                        display: none;
+                    }
+                }
+            }
+        }
+        &--middle {
+            margin-top: -150px;
+            z-index: 1;
+            & + .loyalty-rewards__page-row .loyalty-rewards__page-row-container {
+                margin-top: -90px;
+                z-index: 1;
+                position: relative;
+            }
+            &::after {
+                width: 60%;
+                right: 36%;
+                background-image: url('../Vapeuk_PageBuilderRewardsContent/images/vip-silver-man.png');
+            }
+            .loyalty-rewards__page-row-container {
+                padding-top: 30px;
+                padding-bottom: 30px;
+            }
+            .loyalty-rewards__header-content {
+                flex: 0 0 30%;
+            }
+            .loyalty-rewards__header-image-mobile {
+                flex: 0 0 70%;
+            }
+            h3 {
+                font-size: 3.6rem;
+                max-width: 300px;
+            }
+            @media screen and (max-width: 1350px) {
+                .loyalty-rewards__header-content {
+                    flex: 0 0 35%;
+                }
+                .loyalty-rewards__page-row-container {
+                    padding: 0;
+                }
+                &::after {
+                    width: 65%;
+                }
+            }
+            @media screen and (max-width: 1023px) {
+                & {
+                    margin-top: -240px;
+                    z-index: 0;
+                    .loyalty-rewards__page-row-container {
+                        padding: 60px 16px 0;
+                    }
+                }
+            }
+        }
+        &--footer {
+            margin-top: -180px;
+            &::after {
+                background-image: url('../Vapeuk_PageBuilderRewardsContent/images/vip-platinum-girl.png');
+            }
+            .loyalty-rewards__page-row-container {
+                padding-top: 90px;
+                padding-bottom: 60px;
+            }
+            h3 {
+                font-size: 3.6rem;
+            }
+            .loyalty-rewards__content--header .loyalty-rewards__header-content {
+                flex: 1 1 30%;
+            }
+            @media screen and (max-width: 1350px) {
+                &::after {
+                    right: 41%;
+                    height: 48vw;
+                }
+            }
+            @media screen and (max-width: 1150px) {
+                &::after {
+                    right: 38%;
+                }
+            }
+            @media screen and (max-width: 1023px) {
+                .loyalty-rewards__page-row-container {
+                    padding-bottom: 0;
+                }
+            }
+        }
+    }
+    &-container {
+        margin: 0 auto;
+        max-width: 1240px;
+        padding: 0 var(--mobile-margin);
+    }
+}
+
+.loyalty-rewards__content {
+    margin-bottom: 30px;
+    padding-top: 30px;
+    h1, h2, h3, h4, h5, h6 {
+        font-family: @font-family__heading;
+        font-weight: 400;
+        color: @vape-dark-blue;
+    }
+    h1 {
+        font-size: 3.6rem;
+    }
+    h2 {
+        font-size: 3.6rem;
+    }
+    h3 {
+        font-size: 3rem;
+    }
+    &--header {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        .loyalty-rewards__header-content {
+            flex: 1 1 50%;
+            position: relative;
+            z-index: 2;
+            p {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+            }
+        }
+        .loyalty-rewards__header-image-mobile {
+            flex: 1 1 50%;
+            img {
+                display: none;
+            }
+        }
+    }
+
+    @media screen and (max-width: 1023px) {
+        & {
+            flex-direction: column;
+            margin-bottom: 0;
+            .loyalty-rewards__header-image-mobile {
+                img {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    a:not(.loyalty-rewards__not-logged-in-action):not(.points-actions__action):not(.loyalty-rewards__no-tier a) {
+        color: @vape-accessible-blue-aa;
+        .link-underline();
+    }
+    &.vip-rewards-status {
+        .yotpo-headline .yotpo-inner-text {
+            font-family: @font-family__heading !important;
+            font-weight: 400 !important;
+        }
+        .yotpo-description .yotpo-inner-text {
+            font-family: 'Fjalla One' !important;
+            font-weight: 400 !important;
+            background: #263042 !important;
+            border-radius: 4px;
+            display: inline-block;
+            padding: 15px 40px;
+            color: #fff !important;
+            font-size: 32px !important;
+            margin-top: 10px;
+        }
+        button.yotpo-button-style {
+            border-radius: 4px;
+            span.yopto-widget-button-text {
+                font-family: @font-family__sans-serif !important;
+                font-weight: 600 !important;
+            }
+        }
+        .yotpo-secondary-button button span {
+            color: @vape-dark-blue !important;
+        }
+        .yotpo-description .yotpo-inner-text .highlight-number {
+            color: @vape-blue !important;
+            font-size: 32px !important;
+        }
+
+    }
+}
+
+.loyalty-rewards__heading-2 {
+    margin-bottom: 5.7rem;
+}
+
+.yotpo-widget-my-rewards-widget.yotpo-widget-my-rewards-widget .yotpo-action-buttons-tile {
+    align-items: center;
+    gap: 32px;
+}
+.yotpo-widget-my-rewards-widget.yotpo-widget-my-rewards-widget .yotpo-logged-in-view .yotpo-primary-button {
+    padding-right: 0;
+}
+.yotpo-widget-my-rewards-widget.yotpo-widget-my-rewards-widget .yotpo-logged-in-view .yotpo-secondary-button {
+    padding-left: 0;
+}
+
+.loyalty-rewards__not-logged-in-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    @media screen and (max-width: 1023px) {
+        & {
+            margin-bottom: 30px;
+        }
+    }
+    @media screen and (max-width: 480px) {
+        & {
+            flex-direction: column;
+        }
+    }
+}
+.loyalty-rewards__not-logged-in-action {
+    border-radius: @default-border-radius;
+    color: @vape-white;
+    font-family: @font-family__heading;
+    font-size: 2.4rem;
+    flex: 1 1 auto;
+    text-align: center;
+    padding: 10px;
+    span {
+        .link-underline();
+    }
+    &:hover {
+        text-decoration: none;
+        color: @vape-white;
+        span {
+            .link-underline-hover();
+            text-decoration: none;
+        }
+    }
+    &--create-account {
+        background: rgb(56,188,240);
+        background: linear-gradient(180deg, rgba(56,188,240,1) 0%, rgba(0,130,210,1) 100%);
+    }
+    &--log-in {
+        background-color: @vape-dark-blue;
+    }
+    &:visited {
+        color: @vape-white;
+    }
+}
+
+.loyalty-rewards__logo {
+    width: 212px;
+    margin: -13px 0 30px -13px;
+}
+
+.vip-rewards-status {
+    text-align: center;
+    padding-top: 60px;
+    .tier-colour{
+        text-transform: uppercase;
+        &--bronze {
+            color: @vape-rewards-bronze;
+        }
+        &--silver {
+            color: @vape-rewards-silver;
+        }
+        &--gold {
+            color: @vape-rewards-gold;
+        }
+        &--platinum {
+            color: @vape-rewards-platinum;
+        }
+    }
+}
+
+.vip-rewards-status {
+    &__points-balance {
+        background: @vape-dark-blue;
+        color: @vape-white;
+        padding: 10px 20px;
+        font-size: 2.8rem;
+        font-family: @font-family__heading;
+        display: inline-block;
+        border-radius: @default-border-radius;
+        span {
+            color: @vape-blue;
+        }
+    }
+    &__points-actions {
+        margin: 80px 0;
+        .points-actions__action {
+            border: 2px solid @vape-blue;
+            border-radius: @default-border-radius;
+            font-size: 1.6rem;
+            text-transform: uppercase;
+            padding: 10px 20px;
+            &--redeem {
+                background: @vape-blue;
+                color: @vape-white;
+                font-weight: 700;
+                margin-right: 25px;
+            }
+            &--history {
+                background: @vape-white;
+                color: @vape-dark-blue;
+                padding: 10px;
+            }
+            span {
+                .link-underline();
+            }
+            &:hover {
+                text-decoration: none;
+                span {
+                    .link-underline-hover();
+                }
+            }
+            @media screen and (max-width: 480px) {
+                &--redeem,
+                &--history {
+                   display: block;
+                   margin: 20px 0;
+                }
+            }
+        }
+    }
+}
+
+.loyalty-rewards__no-tier {
+    background: @vape-dark-blue;
+    margin-top: 4rem;
+    padding: 60px;
+    border-radius: 10px;
+    box-shadow: @default-drop-shadow-large;
+    color: @vape-white;
+    font-family: @font-family__heading;
+    font-size: 2.8rem;
+    text-align: center;
+    display: inline-block;
+    max-width: 340px;
+    a {
+        display: inline-block;
+        color: @vape-white;
+        .link-underline(true);
+        font-family: @font-family__sans-serif;
+        font-size: 1.6rem;
+        padding-top: 40px;
+    }
+    span {
+        color: @vape-blue;
+    }
+}
+
+
+.loyalty-ways__account-panel {
+	background: linear-gradient(180deg, rgba(255,255,255,0) 42%, rgba(0,0,0,0.07) 73%, rgba(0,0,0,0.14) 100%), linear-gradient(90deg, rgb(3,137,208) 16%, rgb(6,172,238) 100%);
+	position: relative;
+	overflow: hidden;
+	color: @vape-white;
+	border-radius: 10px;
+	margin-bottom: 20px;
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('../Vapeuk_PageBuilderRewardsContent/images/loyalty_intro_row_pattern.svg') no-repeat;
+        background-size: 195%;
+        background-position: 40% 54%;
+        mix-blend-mode: multiply;
+        opacity: 0.14;
+        z-index: 0;
+    }
+
+    .loyalty-ways__row-inner {
+        position: relative;
+        z-index: 1;
+        margin-bottom: 0;
+        border: none;
+    }
+
+    h3 {
+        color: @vape-white;
+    }
+
+    .loyalty-ways__description {
+        p {
+            font-size: 18px;
+            line-height: 1.56;
+            a {
+                color: @vape-white;
+                font-weight: 700;
+            }
+        }
+    }
+    /* Triangle arrow icon with line as pseudo-element */
+    .loyalty-ways__value-arrow {
+        height: 38px;
+        width: 9px;
+        margin: 0 auto;
+        position: absolute;
+        bottom: -110px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 60px;
+            background-color: @vape-white;
+            top: -51px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+    &--welcome {
+        .loyalty-ways__value-arrow {
+            bottom: -60px;
+            &::before {
+                height: 28px;
+                top: -15px;
+            }
+        }
+        h3 {
+            margin-bottom: 24px;
+        }
+
+        .loyalty-ways__value-points span.loyalty-value-active {
+            background: @vape-white;
+            color: @vape-blue;
+            font-size: 40px;
+            line-height: 1;
+        }
+
+        .loyalty-ways__value {
+            margin-bottom: 26px;
+        }
+
+        .loyalty-ways__value-label {
+            font-size: 22px;
+            margin-bottom: 18px;
+            line-height: normal;
+        }
+    }
+
+    &--signup {
+        .loyalty-ways__value {
+	        font-size: 22px;
+	        margin-bottom: 72px;
+        }
+
+        .loyalty-ways__value-points {
+            color: @vape-white;
+        }
+
+        .loyalty-ways__icon {
+            position: relative;
+            align-items: flex-start;
+            padding: 19px 0 0 18px;
+        }
+
+        .loyalty-ways__icon-img {
+            width: 100%;
+            height: auto;
+            position: relative;
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: -68px;
+                left: -54%;
+                width: 140%;
+                height: 140%;
+                background: url('../Vapeuk_PageBuilderRewardsContent/images/create_account_white_lines_desktop.svg') no-repeat;
+            }
+        }
+    }
+
+    .loyalty-ways__value {
+        position: relative;
+        font-weight: 700;
+    }
+}
+
+.loyalty-ways__account-panel-points {
+	font-size: 20px;
+	letter-spacing: 0.05em;
+	font-weight: 700;
+	line-height: 1.2;
+	text-transform: uppercase;
+	text-align: center;
+	max-width: 260px;
+	justify-self: center;
+}
+
+.loyalty-ways__description-links {
+	display: flex;
+	gap: 17px;
+	margin-top: 38px;
+	margin-bottom: 20px;
+    .button {
+        font-family: "Fjalla One";
+        font-size: 20px;
+        border-radius: 4px;
+        padding: 11px 20px;
+        display: inline-block;
+        text-align: center;
+        text-decoration: none;
+        white-space: nowrap;
+        box-shadow: 0 3px 5px #0003;
+        transition: ease-in-out background-color 250ms;
+        box-sizing: border-box;
+        span {
+            .link-underline();
+        }
+        &:hover span {
+            .link-underline-hover();
+        }
+    }
+
+    .primary {
+        background: @vape-dark-blue;
+        color: @vape-white;
+        &:hover {
+            background: #000;
+        }
+    }
+
+    .secondary {
+        background: @vape-white;
+        color: #1d99d9;
+    }
+}
+
+.loyalty-ways__value-intro {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 18px;
+	width: 100%;
+	margin-bottom: 35px;
+	margin-left: 7px;
+	font-family: 'Open Sans', sans-serif;
+	color: @vape-white;
+	font-size: 19px;
+	font-weight: 700;
+	line-height: 1.3;
+	letter-spacing: 0.05em;
+    span {
+        font-family: 'Fjalla One', sans-serif;
+        font-size: 40px;
+        font-weight: 400;
+        line-height: 1.3;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+	.loyalty-ways__account-panel--signup .loyalty-ways__icon-img::after {
+		left: -59%;
+	}
+}
+
+@media screen and (min-width: 1001px) {
+	.loyalty-ways__account-panel .loyalty-ways__description {
+		max-width: 498px;
+	}
+
+	.loyalty-ways__account-panel .loyalty-ways__value {
+		margin-top: 10px;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.loyalty-ways__description-links {
+		justify-content: center;
+		margin-bottom: 4px;
+	}
+
+	.loyalty-ways__value-arrow {
+		bottom: -88px;
+        &::before {
+            top: -38px;
+            height: 50px;
+        }
+	}
+
+	.loyalty-ways__account-panel--signup {
+        .loyalty-ways__icon {
+            align-items: center;
+            padding-top: 0;
+            &::after {
+                bottom: -71px;
+                left: -64%;
+                width: 146%;
+                height: 146%;
+            }
+        }
+
+        .loyalty-ways__value {
+            margin-bottom: 56px;
+        }
+    }
+}
+
+@media screen and (min-width: 751px) {
+	.loyalty-ways__account-panel .loyalty-ways__icon {
+		justify-content: flex-start;
+		max-width: 240px;
+	}
+
+	.loyalty-ways__description-links .button {
+		flex: 0 1 220px;
+	}
+
+	.loyalty-ways__account-panel .loyalty-ways__icon {
+        img,
+        svg {
+		    max-height: 180px;
+        }
+	}
+
+	.loyalty-ways__account-panel--signup .loyalty-ways__icon {
+        img,
+        svg {
+		    max-height: 150px;
+        }
+	}
+
+	.loyalty-ways__account-panel--welcome .loyalty-ways__icon {
+		padding: 0;
+	}
+}
+
+@media screen and (max-width: 750px) {
+	.loyalty-ways__account-panel {
+		background: linear-gradient(0deg, rgba(255,255,255,0) 42%, rgba(0,0,0,0.07) 73%, rgba(0,0,0,0.14) 100%), linear-gradient(90deg, #0389D0 16%, #06ACEE 100%);
+        &::before {
+            background-size: 330%;
+            background-position: 36% 25%;
+        }
+	}
+
+	.loyalty-ways__description-links {
+		flex-direction: column;
+		gap: 10px;
+        .button {
+            width: 218px;
+            margin: 0 auto;
+        }
+	}
+
+	.loyalty-ways__value {
+		margin-bottom: 56px;
+	}
+
+	.loyalty-ways__description-links {
+		margin-bottom: 17px;
+	}
+
+	.loyalty-ways__value-intro {
+		margin-bottom: 30px;
+	}
+
+	.loyalty-ways__account-panel .loyalty-ways__description p {
+		line-height: 1.55;
+	}
+
+	.loyalty-ways__icon-img {
+		max-width: 225px;
+		text-align: center;
+	}
+
+	.loyalty-ways__value-arrow {
+		bottom: -92px;
+        &::before {
+            top: -42px;
+            height: 56px;
+        }
+	}
+
+	.loyalty-ways__account-panel {
+        &--signup {
+            .loyalty-ways__row-inner {
+                padding-top: 20px;
+                gap: 10px;
+            }
+            .loyalty-ways__icon-img::after {
+                top: 42px;
+                left: ~"calc(5vw + 135px)";
+                width: 240%;
+                height: 240%;
+                background: url('../Vapeuk_PageBuilderRewardsContent/images/create_account_white_lines_mobile.svg') no-repeat;
+            }
+            .loyalty-ways__icon {
+                padding: 0;
+            }
+            .loyalty-ways__description h3 {
+                margin-bottom: 32px;
+            }
+        }
+
+        &--welcome {
+            .loyalty-ways__row-inner {
+                padding-top: 35px;
+            }
+            .loyalty-ways__value {
+                margin-bottom: 54px;
+            }
+            .loyalty-ways__value-arrow {
+                bottom: -92px;
+                &::before {
+                    top: -40px;
+                    height: 50px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 432px) {
+	.loyalty-ways__account-panel {
+        &::before {
+            background-size: 500%;
+            background-position: 43% 66%;
+        }
+        &--signup .loyalty-ways__icon-img::after {
+            top: 59px;
+            width: 192%;
+            height: 192%;
+        }
+    }
+}
+
+.loyalty-ways__row-inner {
+	display: grid;
+	grid-template-areas: 'icon description reward';
+	grid-template-columns: 240px 1fr 344px;
+	gap: 25px 3.25%;
+	height: auto;
+	min-height: 234px;
+	font-size: 16px;
+	border: 1px solid @vape-dark-blue-9;
+	border-radius: 10px;
+	box-shadow: -1px 1.7px 15px 0px rgba(0, 0, 0, 0.09);
+	padding: 30px 35px;
+	margin-bottom: 20px;
+	box-sizing: border-box;
+}
+
+.loyalty-ways__row--locked {
+    position: relative;
+    .loyalty-ways__row-inner {
+        position: relative;
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: @vape-white;
+            opacity: 0.85;
+            border-radius: 10px;
+        }
+    }
+}
+
+.loyalty-ways__row:not(.loyalty-ways__account-panel) .loyalty-ways__row-inner {
+    background: @vape-white;
+}
+
+
+.loyalty-ways__row-lock-badge {
+	display: none;
+}
+
+.loyalty-ways__row--locked .loyalty-ways__row-lock-badge {
+	display: flex;
+	position: absolute;
+	top: 35%;
+	left: 50%;
+	transform: translateX(-50%);
+	min-width: 288px;
+	height: 53px;
+	justify-content: center;
+	align-items: center;
+	gap: 12px;
+	background-color: @vape-dark-blue;
+	border-radius: 10px;
+	color: @vape-white;
+	font-size: 26px;
+	font-family: 'Fjalla One', sans-serif;
+	white-space: nowrap;
+	padding: 8px 20px;
+	box-shadow: -1px 1.7px 15px 0px rgba(0, 0, 0, 0.09);
+	box-sizing: border-box;
+}
+
+.loyalty-ways__row--locked .loyalty-ways__reward-tier {
+	opacity: 1;
+}
+
+.loyalty-ways__icon {
+	grid-area: icon;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-width: 225px;
+	padding: 0 20px 0 10px;
+	box-sizing: border-box;
+    img,
+    svg {
+	    height: auto;
+	    max-height: 160px;
+    }
+}
+
+.loyalty-ways__description {
+	grid-area: description;
+	margin-top: 10px;
+    h3 {
+        font-size: 26px;
+        margin-top: 0;
+        margin-bottom: 15px;
+        a {
+            color: @vape-dark-blue;
+            transition: all 250ms ease-in-out;
+            .link-underline(true);
+            &:hover,
+            &:focus {
+                color: @vape-blue;
+            }
+        }
+    }
+    p {
+        margin-top: 0;
+        a {
+            font-weight: 700;
+            color: @vape-accessible-blue-aa;
+            .link-underline();
+            &:hover {
+                .link-underline-hover();
+            }
+        }
+    }
+}
+
+.loyalty-ways__reward {
+	grid-area: reward;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 100%;
+	text-align: center;
+	margin-top: 8px;
+}
+
+.loyalty-ways__value {
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: 600;
+	margin-bottom: 36px;
+}
+
+.loyalty-ways__value-label {
+	font-weight: 700;
+	color: @vape-dark-blue;
+}
+
+.loyalty-ways__value-points {
+	display: flex;
+	justify-content: center;
+	gap: 6%;
+	width: 100%;
+	font-family: 'Fjalla One', sans-serif;
+	font-size: 30px;
+	font-weight: 400;
+	color: #1d99d9;
+	line-height: 1.3;
+	margin-bottom: 13px;
+    span {
+        position: relative;
+        height: 61px;
+        flex: 0 0 68px;
+        padding: 12px 8px;
+        box-sizing: border-box;
+        &.loyalty-value-active {
+            color: @vape-white;
+            background: linear-gradient(0deg, #0389D0 0%, #06ACEE 100%);
+            border-radius: 5px;
+            box-shadow: -1px 1.7px 15px 0px rgba(0, 0, 0, 0.32);
+            &::before,
+            + span::before {
+                display: none;
+            }
+        }
+
+        &:not(:first-of-type)::before {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 30px;
+            background-color: #1d99d9;
+            left: -16%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        &:not(.loyalty-value-active):only-child {
+            font-size: 40px;
+            line-height: 1;
+        }
+    }
+
+    &--small span {
+        font-size: 26px;
+        line-height: 1.5;
+    }
+}
+
+.loyalty-ways__double-points-badge {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 92.5px;
+	height: 68px;
+	border-radius: 7px;
+	padding: 5px;
+	box-shadow: -1px 1.7px 15px 0px rgba(0, 0, 0, 0.25);
+	position: relative;
+	overflow: hidden;
+	box-sizing: border-box;
+    p {
+        font-family: 'Open Sans';
+        color: @vape-white;
+        text-transform: uppercase;
+        font-size: 14.5px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        margin: 0;
+        z-index: 1;
+    }
+}
+
+.loyalty-ways__double-points-badge-bg {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(0deg, #0389d0 6.96%, #05a2e6 85.85%, #06acee 100%);
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('../Vapeuk_PageBuilderRewardsContent/images/double_points_badge_pattern.svg') no-repeat center;
+        background-size: 100%;
+        opacity: 0.7;
+    }
+}
+
+.loyalty-ways__reward-tiers {
+	display: flex;
+	gap: 15px;
+	justify-content: center;
+	margin-top: auto;
+	max-width: 100%;
+}
+
+.loyalty-ways__reward-tier {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 10px;
+	text-transform: uppercase;
+	font-weight: 700;
+	letter-spacing: 0.15em;
+	line-height: 1;
+	color: #000000;
+	text-align: center;
+	min-width: 66px;
+	border-radius: 6px;
+	padding: 8px 9px;
+	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+	opacity: 0.4;
+	box-sizing: border-box;
+    &--bronze {
+        background: linear-gradient(180deg, #ba9f9d 0%, #cbb0ac 30%, #cbb0ac 70%, #b99e9c 100%);
+        padding-left: 11px;
+        padding-right: 11px;
+    }
+    &--silver {
+        background: linear-gradient(180deg, #b5bcc3 0%, #bfc3ca 20%, #d0d0d5 30%, #d0d0d5 60%, #b5bcc3 100%);
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+    &--gold {
+        background: linear-gradient(180deg, #cbaa91 0%, #d9bb9c 20%, #d9bb9c 70%, #d6b799 80%, #cdad93 90%, #c7a68e 100%);
+    }
+    &--platinum {
+        background: linear-gradient(180deg, #d4d6d2 0%, #e5e4e2 30%, #e5e4e2 60%, #e0e0dd 70%, #d4d7d2 80%, #d1d4cf 100%);
+    }
+    &--active {
+        opacity: 1;
+    }
+}
+
+.loyalty-ways__form-optin {
+	grid-area: ~"2 / span 3";
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 40px;
+	width: 100%;
+	min-height: 114px;
+	background-color: @vape-dark-blue;
+	color: @vape-white;
+	padding: 15px 42px 26px;
+	box-sizing: border-box;
+    p {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: normal;
+        flex: 0 1 270px;
+        margin: 0;
+        span {
+            color: @vape-light-blue;
+            font-weight: 700;
+        }
+    }
+    .loyalty-ways__is-opted-in,
+    .loyalty-ways__success {
+        display: none;
+    }
+    form {
+        display: flex;
+        align-items: flex-end;
+        gap: 30px;
+        flex: 1 1 auto;
+        margin-bottom: 0;
+    }
+    label {
+        display: block;
+        font-size: 15px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+    }
+    input,
+    select {
+        min-height: 48px;
+        font-size: 20px;
+        font-family: @font-family__heading;
+        padding: 5px 10px;
+        border-radius: 4px;
+        border: 2px solid rgba(0, 0, 0, 0);
+        box-shadow: inset 0px 0px 4px 0.72px rgba(0, 0, 0, 0.35);
+        &.is-invalid {
+            border-color: #e02b27;
+        }
+    }
+    button {
+        max-width: 350px;
+        min-height: 48px;
+        flex: 1 1 0;
+        font-family: @font-family__heading;
+        .outline-button();
+    }
+    &--newsletter {
+        form > div,
+        button {
+            flex: 1 1 0;
+        }
+        input {
+            width: 100%;
+            font-size: 18px;
+            font-family: @font-family__sans-serif;
+        }
+    }
+    &--birthday {
+        padding: 15px 48px;
+        gap: 30px;
+        p {
+            font-weight: 700;
+        }
+        p:last-child {
+            display: none;
+        }
+        form {
+            gap: 6.5%;
+            margin-bottom: 12px;
+        }
+        input {
+            text-align: center;
+        }
+        #dob-day {
+            width: 78px;
+        }
+        #dob-month {
+            width: 215px;
+        }
+        button {
+            flex: 1 0 145px;
+        }
+    }
+    &--complete,
+    &--success {
+        min-height: 102px;
+        padding: 15px 48px;
+        p {
+            &:last-child,
+            &.loyalty-ways__success {
+                flex: unset;
+                width: 100%;
+                text-align: center;
+                font-weight: 600;
+            }
+            &:first-child {
+                display: none;
+            }
+        }
+        form {
+            display: none;
+        }
+    }
+    &--complete .loyalty-ways__is-opted-in {
+        display: block;
+    }
+    &--success .loyalty-ways__success {
+        display: block;
+    }
+}
+.loyalty-ways__form-optin--birthday.loyalty-ways__form-optin--complete p:last-child {
+    display: block;
+}
+
+/* Row locked state -- form not to be displayed */
+.loyalty-ways__row--locked .loyalty-ways__form-optin {
+	display: none;
+}
+.rewards-grid-mobile-container {
+    display: none;
+    margin-bottom: 60px;
+    padding-bottom: 30px;
+    z-index: 1;
+    &.splide {
+        button.splide__arrow {
+            top: ~"calc(100% - 50px)";
+            z-index: 2;
+        }
+    }
+}
+
+.loyalty-rewards-grid {
+    display: grid;
+    grid-template-columns: 1.6fr repeat(4, 1fr);
+    grid-template-rows: 3fr auto;
+    gap: 0;
+    border: 1px solid #ccc;
+    background-color: @vape-white;
+    border-radius: 10px;
+    box-shadow: @default-drop-shadow-large;
+    margin: 120px 0 60px;
+    position: relative;
+    z-index: 2;
+    &__feature,
+    &__data {
+        margin-left: 16px;
+        margin-right: 8px;
+        padding: 17.5px 0;
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: @vape-dark-blue;
+        font-family: @font-family__sans-serif;
+        position: relative;
+        &::before {
+            content: '';
+            border-top: 1px dashed #a9b2c0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+        &--annual-spend {
+            font-family: @font-family__heading;
+            font-size: 2rem;
+            font-weight: 400;
+            &::before {
+                border-top: none;
+            }
+        }
+    }
+    &__data {
+        margin-left: 20px;
+        margin-right: 20px;
+        background-color: #f6f7f8;
+        text-align: center;
+        &--annual-spend {
+            background-color: @vape-white;
+        }
+        svg {
+            width: 16px;
+            height: 16px;
+            fill: @vape-dark-blue;
+        }
+        &:last-of-type {
+            padding-bottom: 27.5px;
+        }
+    }
+
+    &__tier-badge-container {
+        position: relative;
+        padding-bottom: 80px;
+    }
+    &__tier-badge {
+        position: absolute;
+        bottom: 36px;
+        left: 20px;
+        right: 20px;
+        text-transform: uppercase;
+        &-label {
+            color: @vape-dark-blue;
+            font-weight: 700;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            text-align: center;
+            padding: 10px 0;
+            margin: 0;
+            letter-spacing: 1px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            &--bronze {
+                background-image:  url('../Vapeuk_PageBuilderRewardsContent/images/bronze-tier-badge-background.svg');
+            }
+
+            &--silver {
+                background-image:  url('../Vapeuk_PageBuilderRewardsContent/images/silver-tier-badge-background.svg');
+            }
+
+            &--gold {
+                background-image:  url('../Vapeuk_PageBuilderRewardsContent/images/gold-tier-badge-background.svg');
+            }
+
+            &--platinum {
+                background-image:  url('../Vapeuk_PageBuilderRewardsContent/images/platinum-tier-badge-background.svg');
+            }
+        }
+        &-member {
+            background-color: @vape-dark-blue;
+            background: linear-gradient(to top, #263042 20%, #233755 70%, #213e67 100%);
+            color: @vape-white;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            text-align: center;
+            font-size: 1.4rem;
+            letter-spacing: 3.5px;
+            padding: 6px 0 8px;
+            font-weight: 600;
+            &--bronze {
+                color: @vape-rewards-bronze;
+            }
+            &--silver {
+                color: @vape-rewards-silver;
+            }
+            &--gold {
+                color: @vape-rewards-gold;
+            }
+            &--platinum {
+                color: @vape-rewards-platinum;
+            }
+            span {
+                color: @vape-white;
+            }
+        }
+        &::after {
+            content: 'Active';
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            letter-spacing: 3px;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, #0389d0 7%, #05a2e6 86%, #06acee 100%);
+            font-size: 1.6rem;
+            color: #ffffff;
+            font-weight: 700;
+            padding: 2px 12px;
+            display: none;
+            border-radius: @default-border-radius;
+        }
+    }
+
+    &--bronze:not(&--mobile) > div:nth-child(5n+2),
+    &--silver:not(&--mobile) > div:nth-child(5n+3),
+    &--gold:not(&--mobile) > div:nth-child(5n+4),
+    &--platinum:not(&--mobile) > div:nth-child(5n+5) {
+        background-color: @vape-dark-blue;
+        margin: 0;
+        color: @vape-white;
+        box-shadow: @default-drop-shadow-large;
+        &::before {
+            left: 10px;
+            right: 10px;
+        }
+        svg {
+            fill: @vape-white;
+        }
+        .loyalty-rewards-grid__tier-badge {
+            left: 0;
+            right: 0;
+            bottom: 27px;
+            &-label {
+                font-size: 2.5rem;
+            }
+            &-member {
+                font-size: 2rem;
+            }
+            &::after {
+                display: block;
+            }
+        }
+    }
+
+    &--bronze:not(&--mobile) > div:nth-last-child(4),
+    &--silver:not(&--mobile) > div:nth-last-child(3),
+    &--gold:not(&--mobile) > div:nth-last-child(2),
+    &--platinum:not(&--mobile) > div:last-child {
+        &::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: @vape-dark-blue;
+            height: 20px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+    }
+    &--mobile {
+        display: grid;
+        grid-template-columns: 70% 30%;
+        margin-top: 60px;
+        & > div:first-child {
+            grid-column: span 2;
+        }
+        .loyalty-rewards-grid__span-2 {
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: 60% 40%;
+        }
+        .loyalty-rewards-grid__feature,
+        .loyalty-rewards-grid__data {
+            padding: 10px 0;
+            font-size: 1.2rem;
+            margin: 0;
+            border: none;
+            &--annual-spend {
+                font-size: 1.6rem;
+            }
+            &:last-of-type {
+                padding-bottom: 20px;
+            }
+        }
+        .loyalty-rewards-grid__feature {
+            margin-left: 20px;
+            &::before {
+                right: auto;
+                width: ~"calc(142.857% - 10px)";
+            }
+        }
+        .loyalty-rewards-grid__data {
+            text-align: right;
+            background-color: transparent;
+            margin-right: 20px;
+            &::before {
+                display: none;
+            }
+        }
+        .loyalty-rewards-grid__tier-badge {
+            max-width: 300px;
+            min-width: 250px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+    &--active {
+        background: @vape-dark-blue;
+        background-image: linear-gradient(to bottom, #213e67 6.8px, #233755 23.8px, #263042 34px);
+        border-color: @vape-dark-blue;
+        .loyalty-rewards-grid__feature,
+        .loyalty-rewards-grid__data {
+            color: @vape-white;
+            svg {
+                fill: @vape-white;
+            }
+        }
+        .loyalty-rewards-grid__tier-badge-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 34px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, rgba(38,49,65,1) 0%, rgba(38,49,65,0) 25%, rgba(38,49,65,0) 75%, rgba(38,49,65,1) 100%);
+         }
+        .loyalty-rewards-grid__tier-badge {
+            .loyalty-rewards-grid__tier-badge-member {
+                background: none;
+            }
+            &::after {
+                display: block;
+                top: 85px;
+            }
+        }
+    }
+}
+
+.loyalty-rewards-redemption-grid {
+    display: grid;
+    background-color: @vape-dark-blue;
+    background-image: linear-gradient(to bottom, #263042 20%, #233755 70%, #213e67 100%);
+    border-radius: @default-border-radius;
+    box-shadow: @default-drop-shadow-large;
+    grid-template-columns: 1fr 1fr;
+    padding: 10px 0 20px;
+    margin: 60px 0;
+    &__reward {
+        border-bottom: 1px dashed #a9b2c0;
+        margin: 0 25px;
+        padding: 15px 0 10px;
+        display: flex;
+        flex-direction: row;
+    }
+    &__points {
+        color: @vape-white;
+        text-align: left;
+        flex: 1 1 auto;
+        font-weight: 600;
+    }
+    &__value {
+        color: @vape-blue;
+        text-align: right;
+        flex: 1 1 auto;
+        font-family: @font-family__heading;
+        font-weight: 400;
+        font-size: 2rem;
+    }
+    @media screen and (max-width:479px) {
+        & {
+            grid-template-columns: 1fr;
+            padding: 5px 0 20px;
+            &__reward {
+                margin: 0 15px;
+                padding: 12px 0 7px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1100px) {
+	.loyalty-ways__row-inner {
+		grid-template-columns: 220px 1fr 344px;
+		padding: 30px 38px;
+		gap: 26px;
+	}
+}
+
+@media screen and (max-width: 1023px) {
+    .rewards-grid-mobile-container {
+        display: block;
+    }
+
+    .loyalty-rewards-grid--desktop {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+	.loyalty-ways__row-inner {
+		grid-template-columns: 220px 1fr;
+		grid-template-areas:
+				'icon description'
+				'icon reward';
+	}
+
+	.loyalty-ways__reward {
+		max-width: 344px;
+		margin: 0 auto;
+	}
+
+	.loyalty-ways__description {
+		text-align: center;
+	}
+
+	.loyalty-ways__form-optin {
+		flex-direction: column;
+		grid-area: ~"3 / span 2";
+		gap: 16px;
+	}
+	.loyalty-ways__form-optin form {
+		width: 100%;
+		max-width: 720px;
+	}
+	.loyalty-ways__form-optin p {
+		flex: unset;
+	}
+	.loyalty-ways__form-optin--success,
+	.loyalty-ways__form-optin--complete {
+		justify-content: center;
+	}
+}
+
+@media screen and (max-width: 750px) {
+	.loyalty-ways__row-inner {
+		grid-template-columns: 1fr;
+		grid-template-areas:
+				'icon'
+				'description'
+				'reward';
+		padding: 42px 38px 34px;
+	}
+
+	.loyalty-ways__icon {
+		max-width: 100%;
+		padding: 0;
+	}
+
+	.loyalty-ways__icon {
+        img,
+        svg {
+            max-height: 200px;
+            max-width: 200px;
+        }
+	}
+
+	.loyalty-ways__description {
+		margin-top: 0;
+	}
+	.loyalty-ways__description p:last-of-type {
+		margin-bottom: 6px;
+	}
+
+	.loyalty-ways__reward {
+		max-width: 344px;
+		width: 100%;
+	}
+
+	.loyalty-ways__row--locked .loyalty-ways__row-lock-badge {
+		top: 112px;
+	}
+
+	.loyalty-ways__form-optin {
+		grid-area: ~"4 / span 1";
+		display: none;
+	}
+}
+
+@media screen and (max-width: 432px) {
+	.loyalty-ways__row-inner {
+		padding: 46px 20px 34px;
+	}
+
+	.loyalty-ways__reward-tiers {
+		gap: 3.5vw;
+	}
+
+	.loyalty-ways__reward .loyalty-ways__reward-tier {
+		padding-left: 8px;
+		padding-right: 8px;
+		font-size: 9px;
+		font-size: ~"clamp(8px, 2.5vw, 10px)";
+		min-width: 60px;
+	}
+}
+
+@media screen and (max-width: 359px) {
+	.loyalty-ways__reward .loyalty-ways__reward-tier {
+		min-width: 16vw;
+	}
+
+	.loyalty-ways__value-points {
+		gap: 2%;
+	}
+
+	.loyalty-ways__value-points span {
+		flex-basis: 20vw;
+		height: 58px;
+	}
+	.loyalty-ways__value-points span:not(:first-of-type)::before {
+		left: -5%;
+	}
+
+	.loyalty-ways__row--locked .loyalty-ways__row-lock-badge {
+		min-width: 270px;
+		font-size: 24px;
+	}
+}
